@@ -18,7 +18,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Student>> fetchAllStudents()
     {
         return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
