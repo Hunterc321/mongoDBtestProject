@@ -1,32 +1,18 @@
-package com.example.demoprojectmongodb.student;
+package com.example.demoprojectmongodb.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.example.demoprojectmongodb.student.Address;
+import org.springframework.hateoas.RepresentationModel;
 
-import java.time.ZonedDateTime;
 import java.util.Objects;
 
-@Document
-public class Student {
+public class StudentModel extends RepresentationModel<StudentModel> {
 
-    @Id
     private String id;
     private String firstName;
     private String lastName;
     private Address address;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return id !=null &&
-                id.equals(student.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
+    public StudentModel() {
     }
 
     public String getId() {
@@ -61,4 +47,17 @@ public class Student {
         this.address = address;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        StudentModel that = (StudentModel) o;
+        return id !=null && this.id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
